@@ -1,38 +1,279 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Rubik+Doodle+Shadow');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
+.layout {
+  width: 100vw;
+  height: 100vh;
+  --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+  background-size: 55px 55px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title {
+  font-size: 70px;
+  font-family: "Rubik Doodle Shadow";
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.start_button {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #03045e;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.start_button::before,
+.start_button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  transform: skew(15deg);
+  transition: all 0.5s;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.start_button::before {
+  left: -10px;
+  background: #240046;
+}
+
+.start_button::after {
+  right: -10px;
+  background: #5a189a;
+}
+
+.start_button:hover::before,
+.start_button:hover::after {
+  width: 58%;
+}
+
+.start_button:hover span {
+  color: #e0aaff;
+  transition: 0.3s;
+}
+
+.start_text {
+  color: #03045e;
+  font-size: 18px;
+  transition: all 0.3s ease-in;
+}
+
+.questions {
+  padding: 2.5% 10%;
+  border-bottom: 1px solid black;
+  border-radius: 40px;
+  font-size: 30px;
+  font-family: "Source Code Pro";
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.explain_text {
+  font-size: 20px;
+  color: #575c58;
+}
+
+.number_of_ques {
+  font-size: 15px;
+  color: #240046;
+}
+
+.center {
+  width: 100%;
+  height: 70%;
+
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.answer_place {
+
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 20px;
+  font-family: "Source Code Pro";
+
+
+}
+
+.answer_place_detail {
+  width: 100%;
+  height: 20%;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.answer1 {
+  width: 70%;
+  height: 20%;
+  cursor: pointer;
+  display: flex;
+  height: auto;
+  background-color: #D9AFD9;
+  border-radius: 40px;
+  justify-content: center;
+  padding: 50px 0px 50px 0px;
+  transition: 1s;
+}
+
+.answer1:hover {
+  background-color: #dedcdc;
+  color: black;
+  font-size: large;
+  background: linear-gradient(#97D9E1, #D9AFD9);
+}
+
+.final_result {
+  width: 40%;
+  height: 50%;
+  background: #07182E;
+  position: relative;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  justify-content: center;
+  font-family: "Source Code Pro";
+  flex-direction: column;
+  gap: 1em;
+}
+
+.final_text {
+  z-index: 1;
+  color: white;
+  font-size: 2.3em;
+}
+
+.correct_answer {
+  z-index: 1;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.incorrect_answer {
+  z-index: 1;
+  color: white;
 }
 
-@keyframes App-logo-spin {
+.final_result::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.final_result::after {
+  content: '';
+  position: absolute;
+  background: #07182E;
+  ;
+  inset: 5px;
+  border-radius: 15px;
+}
+
+.restart_button {
+  border: none;
+  position: relative;
+  width: 20%;
+  height: 20%;
+  padding: 0;
+  z-index: 2;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  -webkit-mask-size: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  transform: translateY(8px)
+}
+
+.restart_button:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0px 0 0 0 white;
+  transition: all 2s ease;
+}
+
+.restart_button:hover:after {
+  box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+.restart_button span {
+  position: absolute;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 100;
+  left: 50%;
+  top: 39%;
+  letter-spacing: 3px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: white;
+  transition: all 2s ease;
+}
+
+.restart_button:hover span {
+  color: black;
+}
+
+.restart_button:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
+}
+
+.restart_button:hover:before {
+  width: 100%;
 }
